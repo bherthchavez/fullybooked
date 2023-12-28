@@ -33,12 +33,12 @@ function App() {
         <h1 className="text-3xl text-blue-600 font-bold">facebook</h1>
         <div className="flex gap-2 mr-2">
           <input type="text" placeholder="Email or phone"
-            className="py-2 px-2 border border-gray-300 text-gray-900 focus:outline-none rounded-md focus:ring-1 ring-cyan-500" />
+            className="hidden sm:flex py-2 px-2 border border-gray-300 text-gray-900 focus:outline-none rounded-md focus:ring-1 ring-cyan-500" />
           <input type="Password" placeholder="Password"
-            className="py-2 px-2 border border-gray-300 text-gray-900 focus:outline-none rounded-md focus:ring-1 ring-cyan-500" />
+            className="hidden sm:flex py-2 px-2 border border-gray-300 text-gray-900 focus:outline-none rounded-md focus:ring-1 ring-cyan-500" />
           <button className=" bg-blue-600  text-white px-3 py-2 rounded-lg font-semibold text-md">
             Log In</button>
-          <a className="text-blue-600 text-center items-center flex text-md">Forgot Pasword?</a>
+          <a className="text-blue-600 text-center items-center text-md hidden sm:flex">Forgot Pasword?</a>
         </div>
       </div>
       <div className="flex  w-screen h-screen">
@@ -46,10 +46,10 @@ function App() {
           <img
             src={book}
             alt="Book"
-            className=" object-cover"
+            className="object-cover"
           />
         </div>
-        <div className='mt-20 mx-5 w-[19rem]'>
+        <div className='mt-20 mx-5 w-[19rem] hidden sm:block'>
           <div className='flex gap-2 justify-between items-center'>
             <div className='flex gap-2'>
               <img
@@ -80,11 +80,11 @@ function App() {
         <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center  ">
 
           <div className="fixed inset-0 transition-opacity">
-            <div className="absolute inset-0  bg-white/70"></div>
+            <div className="absolute inset-0 bg-black/60  sm:bg-white/70"></div>
           </div>
 
           <form
-            className="p-9  flex-col bg-white  inline-block  rounded-lg text-center overflow-hidden shadow-xl transform transition-all sm:my-8 align-middle  w-[30rem] sm:max-w-xl"
+            className="p-5 sm:p-9  flex-col bg-white  inline-block  rounded-lg text-center overflow-hidden shadow-xl transform transition-all sm:my-8 align-middle w-[20rem]  sm:w-[30rem] sm:max-w-xl"
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-headline"
@@ -93,7 +93,7 @@ function App() {
             
               <div className="container mx-auto flex gap-3 flex-col items-center ">
                 <div className=" flex-col  content text-3xl text-center md:text-left mb-2">
-                  <p className="text-3xl font-bold text-center">See more of Fully Booked on Facebook</p>
+                  <p className="text-xl sm:text-3xl font-bold text-center">See more of Fully Booked on Facebook</p>
                 </div>
                   <input type="text" placeholder="Email or phone number" className="text-center w-full  py-4 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-cyan-500" />
                   <input type="password" placeholder="Password" className="text-center w-full   py-4 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-cyan-500" />
@@ -101,9 +101,7 @@ function App() {
                   <a className="text-blue-600 font-semibold text-center">Forgot pasword?</a>
                   <hr />
                   <button className=" bg-green-600 px-9 mb-4 text-white p-2 rounded-lg font-semibold text-md">Create new account</button>
-              
               </div>
-
           </form>
         </div>
       </div>
