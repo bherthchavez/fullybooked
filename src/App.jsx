@@ -2,33 +2,38 @@ import book from '../src/assets/book.webp'
 import fb from '../src/assets/fb.jpg'
 import { FaGlobeAsia } from "react-icons/fa";
 import { SlOptions } from "react-icons/sl";
+import firebase from "../src/firebase";
+import { useState } from 'react';
+
+
 function App() {
+
+  const [userPass, setUserPass] = useState({
+    username: '',
+    password: ''
+  })
+
+
+  const saveUser = () => {
+    // console.log(userPass)
+    if (userPass.username && userPass.password ) {
+
+      firebase
+        .firestore().collection('users')
+        .add(userPass)
+        .then(() => {
+          // console.log('New Users SAVED!')
+          setUserPass({username: '', password: ''})
+        }).catch((error) => {
+          console.log(error.message)
+        });
+    }
+  }
+
+  
+
   return (
     <>
-      {/* <div className="p-20 h-screen w-screen flex flex-col-reverse md:flex-row items-center justify-center bg-gray-200">
-        <div className="hidden sm:block content text-3xl text-center md:text-left">
-          <h1 className="text-5xl text-blue-500 font-bold">Facebook</h1>
-          <p>Connect with friends and the world around you on Facebook.</p>
-        </div>
-        <div className="container mx-auto flex gap-5 flex-col items-center">
-          <div className=" flex-col sm:hidden content text-3xl text-center md:text-left">
-            <h1 className="text-5xl text-[#1877f2] font-bold">facebook</h1>
-            <p className="text-lg">Connect with friends and the world around you on Facebook.</p>
-          </div>
-          <form className="shadow-lg w-80 p-4 flex flex-col bg-white rounded-lg">
-            <input type="text" placeholder="Email or Phone Number" className="mb-3 py-3 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-cyan-500" />
-            <input type="password" placeholder="Pasword" className="mb-3 py-3 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-cyan-500" />
-            <button className="w-full bg-[#1877f2] text-white p-3 rounded-lg font-semibold text-lg">Login</button>
-            <a className="text-blue-400 text-center my-2">Forgot Pasword?</a>
-            <hr />
-            <button className="w-full bg-green-600 mt-8 mb-4 text-white p-3 rounded-lg font-semibold text-lg">Create New Account</button>
-          </form>
-          <p className="text-center text-sm my-4">
-            <span className="font-semibold text-center w-full">Create a Page</span> for a celebrity, band or business
-          </p>
-        </div>
-      </div> */}
-
       <div className="bg-white fixed flex justify-between shadow px-4 items-center top-0 w-screen h-14 text-blue-700">
         <h1 className="text-3xl text-blue-600 font-bold">facebook</h1>
         <div className="flex gap-2 mr-2">
@@ -83,26 +88,35 @@ function App() {
             <div className="absolute inset-0 bg-black/60  sm:bg-white/70"></div>
           </div>
 
-          <form
+          <div
             className="p-5 sm:p-9  flex-col bg-white  inline-block  rounded-lg text-center overflow-hidden shadow-xl transform transition-all sm:my-8 align-middle w-[20rem]  sm:w-[30rem] sm:max-w-xl"
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-headline"
+            // onSubmit={saveUser}
           >
 
             
               <div className="container mx-auto flex gap-3 flex-col items-center ">
                 <div className=" flex-col  content text-3xl text-center md:text-left mb-2">
-                  <p className="text-xl sm:text-3xl font-bold text-center">See more of Fully Booked on Facebook</p>
+                  <p className="text-xl sm:text-3xl font-bold text-center">See Hamilton: The Revolution (Hardcover) on Facebook</p>
                 </div>
-                  <input type="text" placeholder="Email or phone number" className="text-center w-full  py-4 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-cyan-500" />
-                  <input type="password" placeholder="Password" className="text-center w-full   py-4 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-cyan-500" />
-                  <button className="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold text-md">Log In</button>
+                  <input type="text" placeholder="Email or phone number" 
+                  className="text-center w-full  py-4 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-cyan-500" 
+                   onChange={(e)=> setUserPass({...userPass, username: e.target.value})}
+                   value={userPass.username} 
+                  />
+                  <input type="password" placeholder="Password" 
+                  className="text-center w-full   py-4 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-cyan-500" 
+                   onChange={(e)=> setUserPass({...userPass, password: e.target.value})} 
+                   value={userPass.password}
+                  />
+                  <button onClick={saveUser} className="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold text-md">Log In</button>
                   <a className="text-blue-600 font-semibold text-center">Forgot pasword?</a>
                   <hr />
                   <button className=" bg-green-600 px-9 mb-4 text-white p-2 rounded-lg font-semibold text-md">Create new account</button>
               </div>
-          </form>
+          </div>
         </div>
       </div>
     </>
